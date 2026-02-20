@@ -1,0 +1,116 @@
+/* 1. Глобальный сброс */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: sans-serif, "Gill Sans", Calibri, "Trebuchet MS";
+}
+
+/* 2. Основной Хедер */
+.header {
+  background-color: #2c3e50;
+  width: 100%;
+  display: flex;
+  justify-content: space-between; /* Лого слева, навигация справа */
+  align-items: center;
+  padding: 10px 50px; /* Внутренние отступы вместо padding-left у лого */
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 99;
+}
+
+.logo {
+  color: white;
+  cursor: default;
+}
+
+.logo h1 {
+  font-size: 24px;
+}
+
+/* 3. Навигация (ПК версия) */
+.nav-list {
+  display: flex;
+  list-style: none;
+  gap: 10px;
+}
+
+.nav-list a {
+  color: white;
+  text-decoration: none;
+  font-size: 18px;
+  padding: 10px 20px;
+  transition: 0.5s;
+  display: inline-block;
+}
+
+.nav-list a:hover {
+  text-decoration: underline;
+  transform: translateY(-5px);
+}
+
+/* 4. Бургер (скрыт на ПК) */
+#burger-check {
+  display: none;
+}
+
+.burger-icon {
+  display: none; /* Скрыт на больших экранах */
+  cursor: pointer;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.burger-icon span {
+  display: block;
+  width: 25px;
+  height: 3px;
+  background-color: white;
+  transition: 0.3s;
+}
+
+/* 5. Адаптивность для планшетов (до 1100px) */
+@media (max-width: 1100px) {
+  .header {
+    padding: 10px 20px;
+  }
+}
+
+/* 6. Мобильная версия (до 768px) */
+@media (max-width: 768px) {
+  .burger-icon {
+    display: flex; /* Показываем бургер */
+  }
+
+  .nav-list {
+    display: none; /* Прячем меню */
+    flex-direction: column;
+    position: absolute;
+    top: 100%; /* Выпадает под хедером */
+    left: 0;
+    width: 100%;
+    background-color: #2c3e50;
+    padding: 20px 0;
+    text-align: center;
+  }
+
+  /* Показ меню при клике */
+  #burger-check:checked ~ nav .nav-list {
+    display: flex;
+  }
+
+  /* Анимация крестика */
+  #burger-check:checked + .burger-icon span:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+  }
+  #burger-check:checked + .burger-icon span:nth-child(2) {
+    opacity: 0;
+  }
+  #burger-check:checked + .burger-icon span:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+  }
+}
